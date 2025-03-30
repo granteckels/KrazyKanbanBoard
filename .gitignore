@@ -1,5 +1,7 @@
 node_modules
 server/.env
+server/dist
+client/dist
 
 notes.txt
 Develop.zip
