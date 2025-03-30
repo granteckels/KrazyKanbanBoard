@@ -9,6 +9,8 @@ const Login = () => {
     password: ''
   });
 
+  const [error, setError] = useState("");
+
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setLoginData({
@@ -24,6 +26,7 @@ const Login = () => {
       Auth.login(data.token);
     } catch (err) {
       console.error('Failed to login', err);
+      setError("Invalid login");
     }
   };
 
@@ -46,6 +49,7 @@ const Login = () => {
           onChange={handleChange}
         />
         <button type='submit'>Submit Form</button>
+        {error && <span>{error}</span>}
       </form>
     </div>
     
