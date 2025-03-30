@@ -7,6 +7,9 @@ const login = async (userInfo: UserLogin) => {
       '/auth/login',
       {
         method: "POST",
+        headers: {
+          'Content-Type': 'application/json',  // Set the Content-Type header to indicate JSON body
+        },
         body: JSON.stringify(userInfo)
       }
     );
@@ -19,7 +22,7 @@ const login = async (userInfo: UserLogin) => {
     return data;
   } catch (err) {
     console.log('Error from data retrieval: ', err);
-    return [];
+    return;
   }
 };
 
