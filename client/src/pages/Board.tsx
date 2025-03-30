@@ -17,9 +17,7 @@ const Board = () => {
   const [loginCheck, setLoginCheck] = useState(false);
 
   const checkLogin = () => {
-    if(auth.loggedIn()) {
-      setLoginCheck(true);
-    }
+    auth.loggedIn() ? setLoginCheck(true) : setLoginCheck(false);
   };
 
   const fetchTickets = async () => {
@@ -44,7 +42,7 @@ const Board = () => {
 
   useLayoutEffect(() => {
     checkLogin();
-  }, []);
+  }, );
 
   useEffect(() => {
     if(loginCheck) {
