@@ -10,12 +10,18 @@ export const login = async (req: Request, res: Response) => {
   const user = await User.findOne({ where: { username }});
   
   if (!user) {
-    return false;
+    return res.sendStatus(403);
   }
 
   const match = await bcrypt.compare(password, user.password);
 
-  return match ? true : false;
+  if(match) {
+    const token = jwt.sign(username, process.env.JWT_SECRET_KEY!, { expiresIn: '10m' });
+    return res.json(token);
+  }
+  else {
+    return res.sendStatus(403);
+  }
 };
 
 const router = Router();
