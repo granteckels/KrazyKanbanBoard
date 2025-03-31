@@ -24,6 +24,7 @@ const CreateTicket = () => {
   const getAllUsers = async () => {
     try {
       const data = await retrieveUsers();
+      if(Array.isArray(data) && data.length === 0)  { window.location.href = "/"; }
       setUsers(data);
     } catch (err) {
       console.error('Failed to retrieve user info', err);
@@ -37,9 +38,13 @@ const CreateTicket = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (newTicket){
-      const data = await createTicket(newTicket);
-      console.log(data);
-      navigate('/');
+      try {
+        const data = await createTicket(newTicket);
+        console.log(data);
+        navigate('/');
+      } catch(err) {
+        navigate('/');
+      }
     }
   }
 

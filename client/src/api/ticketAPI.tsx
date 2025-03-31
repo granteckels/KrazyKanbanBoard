@@ -16,6 +16,7 @@ const retrieveTickets = async () => {
     const data = await response.json();
 
     if(!response.ok) {
+      response.status === 403 && Auth.logout();
       throw new Error('invalid API response, check network tab!');
     }
 
@@ -41,6 +42,7 @@ const retrieveTicket = async (id: number | null): Promise<TicketData> => {
     const data = await response.json();
 
     if(!response.ok) {
+      response.status === 403 && Auth.logout();
       throw new Error('Could not invalid API response, check network tab!');
     }
     return data;
@@ -66,11 +68,11 @@ const createTicket = async (body: TicketData) => {
     const data = response.json();
 
     if(!response.ok) {
+      response.status === 403 && Auth.logout();
       throw new Error('invalid API response, check network tab!');
     }
 
     return data;
-
   } catch (err) {
     console.log('Error from Ticket Creation: ', err);
     return Promise.reject('Could not create ticket');
@@ -92,6 +94,7 @@ const updateTicket = async (ticketId: number, body: TicketData): Promise<TicketD
     const data = await response.json();
 
     if(!response.ok) {
+      response.status === 403 && Auth.logout();
       throw new Error('invalid API response, check network tab!');
     }
 
@@ -116,6 +119,7 @@ const deleteTicket = async (ticketId: number): Promise<ApiMessage> => {
     const data = await response.json();
 
     if(!response.ok) {
+      response.status === 403 && Auth.logout();
       throw new Error('invalid API response, check network tab!');
     }
 

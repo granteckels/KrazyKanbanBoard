@@ -15,6 +15,7 @@ const EditTicket = () => {
       const data = await retrieveTicket(ticketId.id);
       setTicket(data);
     } catch (err) {
+      window.location.href = "/";
       console.error('Failed to retrieve ticket:', err);
     }
   }

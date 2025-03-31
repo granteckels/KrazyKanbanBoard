@@ -23,6 +23,9 @@ const Board = () => {
   const fetchTickets = async () => {
     try {
       const data = await retrieveTickets();
+      checkLogin();
+      // Can't use loginCheck because it doesn't update until next render
+      !auth.loggedIn() && window.location.reload();
       setTickets(data);
     } catch (err) {
       console.error('Failed to retrieve tickets:', err);
@@ -36,6 +39,7 @@ const Board = () => {
       fetchTickets();
       return data;
     } catch (err) {
+      !auth.loggedIn() && window.location.reload();
       return Promise.reject(err);
     }
   }

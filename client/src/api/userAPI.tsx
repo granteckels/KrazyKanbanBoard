@@ -11,6 +11,7 @@ const retrieveUsers = async () => {
     const data = await response.json();
 
     if(!response.ok) {
+      response.status === 403 && Auth.logout();
       throw new Error('invalid user API response, check network tab!');
     }
 
