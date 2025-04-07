@@ -13,11 +13,11 @@ const seedAll = async (): Promise<void> => {
     await seedTickets();
     console.log('\n----- TICKETS SEEDED -----\n');
     
-    process.exit(0);
+    // process.exit(0);
   } catch (error) {
     console.error('Error seeding database:', error);
     process.exit(1);
   }
 };
 
-seedAll();
+export default seedAll;
