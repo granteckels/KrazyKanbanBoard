@@ -10,4 +10,4 @@ This is a web app that requires a log in to use a Kanban Board.
 
 ## Link to Deployed Application
 
-https://candidatesearch-63mo.onrender.com/
+https://krazykanbanboard.onrender.com/
